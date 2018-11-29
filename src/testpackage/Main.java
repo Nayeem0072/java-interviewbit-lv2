@@ -81,7 +81,7 @@ public class Main {
 			System.out.println("loop end: " +currMax + " " + maxSoFar);
 		}
 		return maxSoFar;
-	}
+	}	
 
 	static public ArrayList<Integer> incrementSet(ArrayList<Integer> old){
 		int n = old.size();
@@ -158,15 +158,53 @@ public class Main {
 			System.out.print("\n");
 		}
 	}
+	
+	static public ArrayList<Integer> incrementSetNew(ArrayList<Integer> old) {
+		int n = old.size();
+		int c = 0;
+		boolean first = true;
+		for(int i = n -1; i >= 0; i--){
+			int d = old.get(i);			
+			if(first) {
+				++d;
+				c = d / 10;
+				d = d % 10;
+				first = false;
+			}
+			else {
+				if(c > 0) {
+					++d;
+					c = d / 10;
+					d = d % 10;
+				}	
+				
+			}
+			old.set(i, d);
+		}
+		if(c > 0) {
+			old.add(0, 1);
+		}
+		
+		return old;
+	}
 
 	// Driver 
 	public static void main(String[] args)
 	{
-
-		pascalT(6);
-
-
-
+		ArrayList<Integer> a = new  ArrayList<>();
+		a.add(5);
+		a.add(6);
+		a.add(7);
+		a.add(8);
+		a.add(9);
+		for (Integer i : incrementSetNew(a)) {
+			System.out.print(i + " " );
+		}
+		
+			
+		
+		
+		//pascalT(6);
 
 
 		//		int a[] = {3, -2, 5, -4};
